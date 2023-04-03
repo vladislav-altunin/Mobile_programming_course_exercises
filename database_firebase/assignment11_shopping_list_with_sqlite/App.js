@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import {
   StyleSheet,
@@ -29,6 +28,7 @@ export default function App() {
       updateList
     );
   }, []);
+
   /* CRUD functions */
 
   //save
@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   input: {
     width: 150,
     height: 30,
@@ -132,23 +131,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'grey',
   },
-
   buttonView: {
     flexDirection: 'row',
   },
-
   button: {
     backgroundColor: '#338FFF',
     padding: 10,
     margin: 1,
   },
-
   flatlistView: {
     height: 500,
     margin: 40,
     flexGrow: 0,
   },
-
   headerText: {
     fontWeight: 'bold',
     textAlign: 'center',
