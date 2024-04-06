@@ -1,6 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 
+/*Theme exports*/
+import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
+import * as themeColors from './constants/themeColors.json';
+
+/* Custom theme*/
 /*  Own components */
 import Home from './components/Home';
 import SpendingsScreen from './components/SpendingsScreen';
@@ -18,15 +23,22 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 /* Install icons: npm install react-native-vector-icons*/
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Provider } from 'react-native-paper';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  /* Theme settings */
+  const colorScheme = useColorScheme();
+
+  const customTheme =
+    colorScheme === 'dark'
+      ? { ...MD3DarkTheme, colors: themeColors.dark }
+      : { ...MD3LightTheme, colors: themeColors.light };
   return (
     /* Wrapped with portal to render Dialog Componnets (ProfileDialog, SpenDialog and TopUpDialog and */
-    <Provider>
-      <NavigationContainer>
+    <PaperProvider theme={customTheme}>
+      {console.log(colorScheme)}
+      <NavigationContainer styles={{ margin: 10 }}>
         <Tab.Navigator
           initialRouteName="Home"
           screenOptions={({ route }) => ({ tabBarActiveTintColor: '#000' })}
@@ -61,7 +73,7 @@ export default function App() {
           />
         </Tab.Navigator>
       </NavigationContainer>
-    </Provider>
+    </PaperProvider>
   );
 }
 

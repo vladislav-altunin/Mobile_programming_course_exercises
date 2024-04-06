@@ -10,6 +10,7 @@ export default function TopFuncBar() {
         flexDirection: 'row',
         alignItems: 'center',
         columnGap: 10,
+        paddingHorizontal: 10,
       }}
     >
       <View>
