@@ -26,6 +26,7 @@ const transactions = [
       time: '11.00',
       message: 'Disposable card is not allowed. Disposable card is not allowed',
       amount: '+1387.78',
+      type: '+',
     },
     {
       icon: 'arrow-right',
