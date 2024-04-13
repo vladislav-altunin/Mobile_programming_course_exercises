@@ -1,7 +1,7 @@
 const transactions = [
   [
     {
-      icon: 'airplane',
+      icon: 'currency-eur',
       title: 'Travel',
       date: '24. March',
       time: '11.00',
@@ -10,7 +10,7 @@ const transactions = [
       type: '+',
     },
     {
-      icon: 'camera',
+      icon: 'currency-eur',
       title: 'Travel',
       date: '24. March',
       time: '11.00',
@@ -20,7 +20,7 @@ const transactions = [
       type: '-',
     },
     {
-      icon: 'arrow-right',
+      icon: 'currency-eur',
       title: 'Salaries',
       date: '24. March',
       time: '11.00',
@@ -29,7 +29,7 @@ const transactions = [
       type: '+',
     },
     {
-      icon: 'arrow-right',
+      icon: 'currency-eur',
       title: 'Salaries',
       date: '24. March',
       time: '11.00',
@@ -40,7 +40,7 @@ const transactions = [
   ],
   [
     {
-      icon: 'arrow-right',
+      icon: 'currency-eur',
       title: 'Travel',
       date: '24. March',
       time: '11.00',

@@ -42,7 +42,7 @@ export default function TransactionsItem({ item }) {
                   ]}
                   size={15}
                 >
-                  →
+                  ←
                 </Badge>
               </View>
               {/* rest */}

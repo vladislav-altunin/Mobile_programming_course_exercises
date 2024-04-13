@@ -13,12 +13,12 @@ export default function Paginator({ data, scrollX }) {
         //width, height, borderRadius, color and opacity of the corresponding dots
         const dotWidth = scrollX.interpolate({
           inputRange,
-          outputRange: [5, 6, 5],
+          outputRange: [5, 5, 5], //used to be [5, 6, 5]
         });
         //
         const dotHeight = scrollX.interpolate({
           inputRange,
-          outputRange: [5, 6, 5],
+          outputRange: [5, 5, 5], //used to be [5, 6, 5]
         });
         //
         const dotRadius = scrollX.interpolate({
@@ -29,15 +29,15 @@ export default function Paginator({ data, scrollX }) {
         const dotColor = scrollX.interpolate({
           inputRange,
           outputRange: [
-            theme.colors.primaryContainer,
+            theme.colors.surfaceVariant,
             theme.colors.onPrimaryContainer,
-            theme.colors.primaryContainer,
+            theme.colors.surfaceVariant,
           ],
         });
         //
         const dotOpacity = scrollX.interpolate({
           inputRange,
-          outputRange: [0.3, 1, 0.3],
+          outputRange: [0.5, 1, 0.5],
         });
         return (
           <Animated.View

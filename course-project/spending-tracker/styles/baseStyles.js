@@ -4,9 +4,13 @@ import { StyleSheet } from 'react-native';
 export const baseStyles = StyleSheet.create({
   transactionsItemTitleFontSize: {
     fontSize: 17,
-    fontWeight: 'bold',
+    fontWeight: '600', //semi-bold
   },
   transactionsItemDescritptionFontSize: {
     fontSize: 15,
+  },
+  listPressableText: {
+    fontSize: 17,
+    fontWeight: '700',
   },
 });

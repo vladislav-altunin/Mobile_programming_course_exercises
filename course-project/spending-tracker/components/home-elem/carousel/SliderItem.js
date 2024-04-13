@@ -18,8 +18,18 @@ export default function SliderItem({ item }) {
         <View style={[styles.sliderItemAccountBalanceParent, { flex: 0.75 }]}>
           {/* this container can be used to position elements inside the box */}
           <View style={styles.sliderItemAccountBalance}>
-            <Text variant="titleSmall">{item.title}</Text>
-            <Text variant="displaySmall">{item.balance}</Text>
+            <Text
+              variant="titleSmall"
+              style={{ color: theme.colors.onPrimaryContainer }}
+            >
+              {item.title}
+            </Text>
+            <Text
+              variant="displaySmall"
+              style={{ color: theme.colors.onPrimaryContainer }}
+            >
+              {item.balance}
+            </Text>
           </View>
         </View>
         {/* this container allows to size SlideItem's individual view (its elements should be wrapped into another container) */}
@@ -35,7 +45,9 @@ export default function SliderItem({ item }) {
                 mode="contained"
                 //onPress={() => console.log('Pressed')}
               />
-              <Text>{item.icon_title_1}</Text>
+              <Text style={{ color: theme.colors.onPrimaryContainer }}>
+                {item.icon_title_1}
+              </Text>
             </View>
             <View style={styles.iconButtonAndTextContainer}>
               <IconButton
@@ -46,7 +58,9 @@ export default function SliderItem({ item }) {
                 mode="contained"
                 //onPress={() => console.log('Pressed')}
               />
-              <Text>{item.icon_title_2}</Text>
+              <Text style={{ color: theme.colors.onPrimaryContainer }}>
+                {item.icon_title_2}
+              </Text>
             </View>
             <View style={styles.iconButtonAndTextContainer}>
               <IconButton
@@ -57,7 +71,9 @@ export default function SliderItem({ item }) {
                 mode="contained"
                 //onPress={() => console.log('Pressed')}
               />
-              <Text>{item.icon_title_3}</Text>
+              <Text style={{ color: theme.colors.onPrimaryContainer }}>
+                {item.icon_title_3}
+              </Text>
             </View>
             <View style={styles.iconButtonAndTextContainer}>
               <IconButton
@@ -68,7 +84,9 @@ export default function SliderItem({ item }) {
                 mode="contained"
                 //onPress={() => console.log('Pressed')}
               />
-              <Text>{item.icon_title_4}</Text>
+              <Text style={{ color: theme.colors.onPrimaryContainer }}>
+                {item.icon_title_4}
+              </Text>
             </View>
           </View>
         </View>

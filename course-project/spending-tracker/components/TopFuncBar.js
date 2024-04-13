@@ -1,7 +1,9 @@
 import { Text, View } from 'react-native';
-import { IconButton, MD3Colors, Button, Searchbar } from 'react-native-paper';
+import { IconButton, MD3Colors, Button, useTheme } from 'react-native-paper';
+import SearchBar from './SearchBar';
 
 export default function TopFuncBar() {
+  const theme = useTheme();
   return (
     <View
       style={{
@@ -11,6 +13,7 @@ export default function TopFuncBar() {
         alignItems: 'center',
         columnGap: 10,
         paddingHorizontal: 10,
+        backgroundColor: theme.colors.primary,
       }}
     >
       <View>
@@ -19,17 +22,16 @@ export default function TopFuncBar() {
           mode="contained"
           style={{ marginLeft: 0, marginRight: 0 }}
           size={18}
-          iconColor={MD3Colors.error50}
+          iconColor={theme.colors.onPrimaryContainer}
+          containerColor={theme.colors.primaryContainer}
           onPress={() => console.log('Pressed')}
         />
       </View>
-      <View style={{ flexGrow: 1 }}>
-        <Searchbar
-          placeholder="Search"
-          style={{ height: 36, minHeight: 36 }}
-          inputStyle={{ minHeight: 0 }} // miHeigh 0 to make serach bar work
-        />
-      </View>
+      <SearchBar
+        bgCol={theme.colors.primaryContainer}
+        inputCol={theme.colors.surface}
+        iconCol={theme.colors.onPrimaryContainer}
+      />
       <View>
         <Button
           icon="plus"
@@ -39,12 +41,14 @@ export default function TopFuncBar() {
             height: 36,
             paddingLeft: 3,
             paddingRight: 3,
+            backgroundColor: theme.colors.primaryContainer,
           }}
           labelStyle={{
             marginTop: 0,
             marginLeft: 1,
             marginBottom: 0,
             lineHeight: 36,
+            color: theme.colors.onPrimaryContainer,
           }}
         >
           New

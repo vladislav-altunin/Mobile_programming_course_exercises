@@ -1,8 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+// import * as SystemUI from 'expo-system-ui';
 
 /*Theme exports*/
-import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
+import {
+  MD3DarkTheme,
+  MD3LightTheme,
+  PaperProvider,
+  adaptNavigationTheme,
+} from 'react-native-paper';
 import * as themeColors from './constants/themeColors.json';
 
 /* Custom theme*/
@@ -18,47 +24,71 @@ npm install @react-navigation/native --save
 npm install @react-navigation/bottom-tabs --save
 npm install @react-navigation/stack --save
 */
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  useTheme as useNavTheme,
+} from '@react-navigation/native';
+import DarkTheme from './constants/DarkTheme';
+import DefaultTheme from './constants/DefaultTheme';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+/*Merge React native paper and React Navigations themes*/
+import merge from 'deepmerge';
 
 /* Install icons: npm install react-native-vector-icons*/
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-const Tab = createBottomTabNavigator();
+import { setBackgroundColorAsync } from 'expo-system-ui';
+import TransactionsScreen from './components/TransactionsScreen';
 
 export default function App() {
+  const Tab = createBottomTabNavigator();
   /* Theme settings */
   const colorScheme = useColorScheme();
+  {
+    console.log(colorScheme);
+  }
 
-  const customTheme =
+  /*Combine themes (in plain JS without merge)*/
+  // const { LightTheme, DarkTheme } = adaptNavigationTheme({
+  //   reactNavigationLight: NavigationDefaultTheme,
+  //   reactNavigationDark: NavigationDarkTheme,
+  // });
+
+  const CustomTheme =
     colorScheme === 'dark'
       ? { ...MD3DarkTheme, colors: themeColors.dark }
       : { ...MD3LightTheme, colors: themeColors.light };
+
+  const { colors } = useNavTheme();
+  const colorSchemeNav = 'dark';
+
   return (
     /* Wrapped with portal to render Dialog Componnets (ProfileDialog, SpenDialog and TopUpDialog and */
-    <PaperProvider theme={customTheme}>
+    <PaperProvider theme={CustomTheme}>
       {console.log(colorScheme)}
-      <NavigationContainer styles={{ margin: 10 }}>
+      <NavigationContainer
+        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      >
         <Tab.Navigator
           initialRouteName="Home"
-          screenOptions={({ route }) => ({ tabBarActiveTintColor: '#000' })}
+          screenOptions={({ route }) => ({})}
         >
           <Tab.Screen
             name="Home"
             component={Home} //HomeScreen
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Icon name="home" color={color} size={size} />
+                <Icon name="home" size={30} color={color} /> // passing {color} picks the color from the color scheme and sets the active color accordingly
               ),
               headerShown: false,
             }}
           />
           <Tab.Screen
-            name="Spendings"
-            component={SupportScreen} //SpendingsStackScreen
+            name="Transactions"
+            component={TransactionsScreen} //SpendingsStackScreen
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Icon name="format-list-bulleted" color={color} size={size} />
+                <Icon name="format-list-bulleted" color={color} size={30} />
               ),
             }}
           />
@@ -67,7 +97,7 @@ export default function App() {
             component={SupportScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Icon name="message" color={color} size={size} />
+                <Icon name="message" color={color} size={30} />
               ),
             }}
           />
