@@ -14,7 +14,6 @@ import * as themeColors from './constants/themeColors.json';
 /* Custom theme*/
 /*  Own components */
 import Home from './components/Home';
-import SpendingsScreen from './components/SpendingsScreen';
 import SupportScreen from './components/SupportScreen';
 
 /* React navigation imports */
@@ -38,7 +37,7 @@ import merge from 'deepmerge';
 /* Install icons: npm install react-native-vector-icons*/
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { setBackgroundColorAsync } from 'expo-system-ui';
-import TransactionsScreen from './components/TransactionsScreen';
+import Transactions from './components/Transactions';
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -85,7 +84,7 @@ export default function App() {
           />
           <Tab.Screen
             name="Transactions"
-            component={TransactionsScreen} //SpendingsStackScreen
+            component={Transactions} //SpendingsStackScreen
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Icon name="format-list-bulleted" color={color} size={30} />

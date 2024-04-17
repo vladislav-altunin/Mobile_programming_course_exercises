@@ -13,4 +13,8 @@ export const baseStyles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
   },
+  listSectionTitle: {
+    fontSize: 25,
+    fontWeight: '700',
+  },
 });
