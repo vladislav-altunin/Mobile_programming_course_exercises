@@ -63,7 +63,7 @@ const createStyles = theme => {
       flex: 1,
       // minHeight: 2, // this MIGHT ensure "FlashList's rendered size IS usable (>2px)"
       backgroundColor: theme.colors.surface,
-      padding: 10, // add padding to see the container
+      // padding: 10, // add padding to see the container
       marginHorizontal: 10,
       marginTop: -10,
       marginBottom: 30,

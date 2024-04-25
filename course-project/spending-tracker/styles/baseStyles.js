@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 export const baseStyles = StyleSheet.create({
+  generalHorizontalMargin: {
+    marginHorizontal: 10,
+  },
   transactionsItemTitleFontSize: {
     fontSize: 17,
     fontWeight: '600', //semi-bold

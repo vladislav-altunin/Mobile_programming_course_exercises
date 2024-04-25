@@ -6,26 +6,41 @@ import {
   useWindowDimensions,
   Pressable,
 } from 'react-native';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Badge, Icon, IconButton, MD3Colors } from 'react-native-paper';
-import { baseStyles } from '../../styles/baseStyles';
+import { baseStyles } from '../styles/baseStyles';
 import { useTheme } from 'react-native-paper';
 import { color } from '@rneui/base';
 
-//passing index & section will help to style section container
-export default function TransactionsItem({ item, index, section }) {
+export default function ListItem(props) {
   const theme = useTheme();
   const styles = createStyles(theme);
-
+  let {
+    item,
+    index,
+    section,
+    itmIcon,
+    icnCol,
+    cntCol,
+    bdgCol,
+    bdgBgCol,
+    ttlCol,
+    itmTtl,
+    itmDate,
+    itmTime,
+    datTimeCol,
+    itmMsg,
+    msgCol,
+    itmAmt,
+    amtCol,
+  } = props;
   return (
     <View
       style={[
         styles.flatListItemContainer,
         index === 0 && styles.flatListItemContainerFirst,
-        index === section.data.length - 1 && styles.flatListItemContainerLast,
       ]}
     >
-      {/* this is the actual FlatListItem */}
       <View style={styles.flatListItemContentContainer}>
         <Pressable onPress={() => console.log('Pressable Pressed')}>
           {/* this view is needed to position the IconButton and the rest of pressable */}
@@ -33,10 +48,10 @@ export default function TransactionsItem({ item, index, section }) {
             {/* IconButton */}
             <View style={{ flexShrink: 1 }}>
               <IconButton
-                icon={item.icon}
+                icon={itmIcon} //item.icon
                 size={20}
-                iconColor={theme.colors.onSecondary}
-                containerColor={theme.colors.secondary}
+                iconColor={icnCol} //{theme.colors.onSecondary}
+                containerColor={cntCol} //theme.colors.secondary
                 mode="contained-tonal"
                 onPress={() => console.log('IconButton Pressed')}
               />
@@ -44,8 +59,8 @@ export default function TransactionsItem({ item, index, section }) {
                 style={[
                   styles.badge,
                   {
-                    backgroundColor: theme.colors.onSecondaryContainer,
-                    color: theme.colors.onPrimaryContainer,
+                    backgroundColor: bdgBgCol, //theme.colors.onSecondaryContainer,
+                    color: bdgCol, //theme.colors.onPrimaryContainer,
                   },
                 ]}
                 size={15}
@@ -58,36 +73,44 @@ export default function TransactionsItem({ item, index, section }) {
               <Text
                 style={[
                   baseStyles.transactionsItemTitleFontSize,
-                  { color: theme.colors.onBackground },
+                  //theme.colors.onBackground
+                  { color: ttlCol },
                 ]}
               >
-                {item.title}
+                {/* {item.title} */}
+                {itmTtl}
               </Text>
               <Text
                 style={[
                   baseStyles.transactionsItemDescritptionFontSize,
-                  { color: theme.colors.onSurface },
+                  //   { color: theme.colors.onSurface }
+                  { color: datTimeCol },
                 ]}
               >
-                {item.date}, {item.time}
+                {/* {item.date}, {item.time} */}
+                {itmDate}, {itmTime}
               </Text>
               <Text
                 style={[
                   baseStyles.transactionsItemDescritptionFontSize,
-                  { color: theme.colors.onSurface },
+                  //   { color: theme.colors.onSurface }
+                  { color: msgCol },
                 ]}
               >
-                {item.message}
+                {/* {item.message} */}
+                {itmMsg}
               </Text>
             </View>
             <View>
               <Text
                 style={[
                   baseStyles.transactionsItemDescritptionFontSize,
-                  { color: theme.colors.onSurface },
+                  //   { color: theme.colors.onSurface }
+                  { color: amtCol },
                 ]}
               >
-                {item.amount}
+                {/* {item.amount} */}
+                {itmAmt}
               </Text>
             </View>
           </View>
@@ -100,7 +123,7 @@ export default function TransactionsItem({ item, index, section }) {
 const createStyles = theme => {
   return StyleSheet.create({
     flatListItemContainer: {
-      // flex: 1,
+      //   flex: 1,
       // backgroundColor: 'blue',
       backgroundColor: theme.colors.surface,
       padding: 10,
@@ -118,12 +141,12 @@ const createStyles = theme => {
       borderBottomRightRadius: 15,
     },
     flatListItemContentContainer: {
-      // flex: 1,
+      //   flexGrow: 1,
       // backgroundColor: 'pink',
       minWidth: '100%',
     },
     flatListItemElements: {
-      // flex: 1,
+      //   flex: 1,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'flex-start',

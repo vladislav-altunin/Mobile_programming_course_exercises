@@ -1,0 +1,4 @@
+// Build for local development on iOS
+eas build -p ios --profile development --local
+
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/vlad/.zprofile
