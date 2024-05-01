@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 7.8.2"
+    "version": ">= 7.8.5"
   },
   "build": {
     "development": {
@@ -11,10 +11,7 @@
       }
     },
     "preview": {
-      "distribution": "internal",
-      "ios": {
-        "simulator": true
-      }
+      "distribution": "internal"
     },
     "production": {}
   },

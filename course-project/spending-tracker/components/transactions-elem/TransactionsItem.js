@@ -13,7 +13,7 @@ import { useTheme } from 'react-native-paper';
 import { color } from '@rneui/base';
 
 //passing index & section will help to style section container
-export default function TransactionsItem({ item, index, section }) {
+export default function TransactionsItem({ item, index, sectionLength }) {
   const theme = useTheme();
   const styles = createStyles(theme);
 
@@ -22,7 +22,7 @@ export default function TransactionsItem({ item, index, section }) {
       style={[
         styles.flatListItemContainer,
         index === 0 && styles.flatListItemContainerFirst,
-        index === section.data.length - 1 && styles.flatListItemContainerLast,
+        index === sectionLength - 1 && styles.flatListItemContainerLast,
       ]}
     >
       {/* this is the actual FlatListItem */}

@@ -14,6 +14,7 @@ import { useTheme } from 'react-native-paper';
 import { baseStyles } from '../../styles/baseStyles';
 import SectionSeparator from './SectionSeparator';
 import SearchBar from '../SearchBar';
+import ListItem from '../ListItem';
 
 export default function TransactionsAggregated() {
   const { height, width } = useWindowDimensions();
@@ -34,7 +35,32 @@ export default function TransactionsAggregated() {
           sections={TRANSACTIONS_AGGREGATED}
           keyExtractor={(item, index) => item + index}
           renderItem={({ item, index, section }) => (
-            <TransactionsItem item={item} index={index} section={section} />
+            // <TransactionsItem
+            //   item={item}
+            //   index={index}
+            //   sectionLength={section.data.length}
+            // />
+            <ListItem
+              index={index}
+              sectionLength={section.data.length}
+              itmIcon={item.icon}
+              icnCol={theme.colors.onSecondary}
+              cntCol={theme.colors.secondary}
+              bdgCol={theme.colors.onPrimaryContainer}
+              bdgBgCol={theme.colors.onSecondaryContainer}
+              ttlCol={theme.colors.onBackground}
+              itmTtl={'Spent this month'}
+              itmDate={'26. March'}
+              itmTime={'10.55'}
+              itmMsg={item.message}
+              datTimeCol={theme.colors.onSurface}
+              msgCol={theme.colors.onSurface}
+              itmAmt={item.amount}
+              amtCol={theme.colors.onSurface}
+              bgtBarPrgrNum={0.5}
+              bgtBarPrgrCol={theme.colors.tertiary}
+              bgtBarPrgrStyle={theme.colors.tertiaryContainer}
+            />
           )}
           renderSectionHeader={({ section: { title } }) => (
             <Text

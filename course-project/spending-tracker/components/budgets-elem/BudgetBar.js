@@ -5,7 +5,7 @@ import { ProgressBar, Text, useTheme } from 'react-native-paper';
 import { View } from 'react-native';
 
 export default function BudgetBar(props) {
-  let { ttl, dscLft, dscRgt, prgrNum } = props;
+  let { dscLft, dscRgt, prgrNum, prgrCol, prgrStyle, prgrFillStyle } = props;
   const theme = useTheme();
   return (
     <View>
@@ -13,7 +13,6 @@ export default function BudgetBar(props) {
       <View>
         {/* Title */}
         {/* April */}
-        <Text>{ttl}</Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           {/* 0€ left to spend */}
           <Text>{dscLft}</Text>
@@ -23,9 +22,9 @@ export default function BudgetBar(props) {
       </View>
       <ProgressBar
         progress={prgrNum}
-        color={theme.colors.tertiary}
-        style={{ height: 24, borderRadius: 12 }}
-        fillStyle={{ borderRadius: 12 }}
+        color={prgrCol} //{theme.colors.tertiary}
+        style={{ backgroundColor: prgrStyle, marginVertical: 5 }} //{{ height: 24, borderRadius: 12 }}
+        fillStyle={prgrFillStyle} //{{ borderRadius: 12 }}
       />
     </View>
   );
