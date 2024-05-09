@@ -3,7 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      //reanimated plugin shoud be the last in the (array) of plugins
+      //reanimated should always be last in the list
       'react-native-reanimated/plugin',
     ],
   };

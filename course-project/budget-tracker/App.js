@@ -119,7 +119,7 @@ export default function App() {
         </NavigationContainer>
         {/* <GestureDetector gesture={pan}>
         </GestureDetector> */}
-        <BottomSheet />
+        {/* <BottomSheet /> */}
       </PaperProvider>
     </GestureHandlerRootView>
   );

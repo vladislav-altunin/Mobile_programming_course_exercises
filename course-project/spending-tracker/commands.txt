@@ -2,3 +2,7 @@
 eas build -p ios --profile development --local
 
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/vlad/.zprofile
+
+/*clear cache expo*/
+npx expo -c
+
