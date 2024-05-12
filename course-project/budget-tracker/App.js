@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
-import React, { useRef } from 'react';
-// import * as SystemUI from 'expo-system-ui';
+import React, { useEffect, useRef, useState } from 'react';
 
 /*Theme exports*/
 import {
@@ -48,7 +47,19 @@ import {
 } from 'react-native-gesture-handler';
 import BottomSheet from './components/home-elem/new-transaction/BottomSheet';
 
+/* DB loder */
+import { SQLiteProvider } from 'expo-sqlite/next';
+import { loadDatabase } from './helpers/dbLoadHelper';
+import OnDbLoad from './components/OnDbLoad';
+
 export default function App() {
+  const [dbLoaded, setDbLoaded] = useState(false);
+  useEffect(() => {
+    //loadDatabase is imported
+    loadDatabase()
+      .then(() => setDbLoaded(true))
+      .catch(e => console.log(e));
+  }, []);
   const Tab = createBottomTabNavigator();
   /* Theme settings */
   const colorScheme = useColorScheme();
@@ -80,45 +91,53 @@ export default function App() {
         <NavigationContainer
           theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
         >
-          <Tab.Navigator
-            initialRouteName="Home"
-            screenOptions={({ route }) => ({})}
-          >
-            <Tab.Screen
-              name="Home"
-              // each screen should be wrapped with gestureHandlerRootHOC() according to react-native-reanimated guides
-              component={gestureHandlerRootHOC(Home)} //HomeScreen
-              options={{
-                tabBarIcon: ({ color, size }) => (
-                  <Icon name="home" size={30} color={color} /> // passing {color} picks the color from the color scheme and sets the active color accordingly
-                ),
-                headerShown: false,
-              }}
-            />
-            <Tab.Screen
-              name="Transactions"
-              // each screen should be wrapped with gestureHandlerRootHOC() according to react-native-reanimated guides
-              component={gestureHandlerRootHOC(Transactions)} //SpendingsStackScreen
-              options={{
-                tabBarIcon: ({ color, size }) => (
-                  <Icon name="format-list-bulleted" color={color} size={30} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Budgets"
-              // each screen should be wrapped with gestureHandlerRootHOC() according to react-native-reanimated guides
-              component={gestureHandlerRootHOC(Budgets)}
-              options={{
-                tabBarIcon: ({ color, size }) => (
-                  <Icon name="message" color={color} size={30} />
-                ),
-              }}
-            />
-          </Tab.Navigator>
+          <React.Suspense fallback={<OnDbLoad />}>
+            <SQLiteProvider useSuspense databaseName="budgetApp.db">
+              <Tab.Navigator
+                initialRouteName="Home"
+                screenOptions={({ route }) => ({})}
+              >
+                <Tab.Screen
+                  name="Home"
+                  // each screen should be wrapped with gestureHandlerRootHOC() according to react-native-reanimated guides
+                  component={gestureHandlerRootHOC(Home)} //HomeScreen
+                  options={{
+                    tabBarIcon: ({ color, size }) => (
+                      <Icon name="home" size={30} color={color} /> // passing {color} picks the color from the color scheme and sets the active color accordingly
+                    ),
+                    headerShown: false,
+                  }}
+                />
+                <Tab.Screen
+                  name="Transactions"
+                  // each screen should be wrapped with gestureHandlerRootHOC() according to react-native-reanimated guides
+                  component={gestureHandlerRootHOC(Transactions)} //SpendingsStackScreen
+                  options={{
+                    tabBarIcon: ({ color, size }) => (
+                      <Icon
+                        name="format-list-bulleted"
+                        color={color}
+                        size={30}
+                      />
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="Budgets"
+                  // each screen should be wrapped with gestureHandlerRootHOC() according to react-native-reanimated guides
+                  component={gestureHandlerRootHOC(Budgets)}
+                  options={{
+                    tabBarIcon: ({ color, size }) => (
+                      <Icon name="message" color={color} size={30} />
+                    ),
+                  }}
+                />
+              </Tab.Navigator>
+            </SQLiteProvider>
+          </React.Suspense>
         </NavigationContainer>
         {/* <GestureDetector gesture={pan}>
-        </GestureDetector> */}
+          </GestureDetector> */}
         {/* <BottomSheet /> */}
       </PaperProvider>
     </GestureHandlerRootView>

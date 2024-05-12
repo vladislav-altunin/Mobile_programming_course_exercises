@@ -16,12 +16,13 @@ export default function Slider() {
   //Setting the refference whnever the FlatList scrolls and moves onto the next slide
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     setCurrentIndex(viewableItems[0].index);
+    console.log(viewableItems);
   }).current;
   //This tells that the next slide should be at least 50% of the screen before if will change
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
   return (
     <View style={styles.container}>
-      {console.log(currentIndex)}
+      {console.log(`Current index in Slider.js ${currentIndex}`)}
       <FlatList
         data={accounts}
         renderItem={({ item }) => <SliderItem item={item} />}
