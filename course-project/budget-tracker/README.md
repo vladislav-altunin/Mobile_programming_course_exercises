@@ -1,6 +1,6 @@
 ## Budget Tracker
 
-### Descritption
+### Description
 
 This is a Budget Tracker that keeps track on expenses, savings and bidgets.
 
