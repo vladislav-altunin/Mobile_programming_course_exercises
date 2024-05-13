@@ -37,10 +37,15 @@ export default function Transactions() {
     console.log(`CATEGORIES SET ${categories}`);
 
     const trs = await dbInstance.getAllAsync(
-      `SELECT * FROM Transactions WHERE (category_id = ?) ORDER BY date DESC;`,
-      [9]
+      `SELECT * FROM Transactions WHERE NOT (category_id = ?) ORDER BY date DESC LIMIT ?;`,
+      [9, 3]
     );
-    setTransactions(trs);
+
+    const sav = await dbInstance.getAllAsync(
+      `SELECT * FROM Transactions WHERE (category_id = ?) ORDER BY date DESC LIMIT ?;`,
+      [9, 3]
+    );
+    setTransactions([trs, sav]);
     console.log(`TRANSACTIONS SET ${transactions}`);
   }
 
@@ -66,7 +71,7 @@ export default function Transactions() {
       <View style={[styles.listContainer]}>
         <FlatList
           // data={transactions[currentIndex]}
-          data={transactions}
+          data={transactions[currentIndex]}
           renderItem={({ item, index }) => (
             <TransactionsItem
               item={item}

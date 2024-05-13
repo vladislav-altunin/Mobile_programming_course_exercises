@@ -114,11 +114,7 @@ export default function App() {
                   component={gestureHandlerRootHOC(Transactions)} //SpendingsStackScreen
                   options={{
                     tabBarIcon: ({ color, size }) => (
-                      <Icon
-                        name="format-list-bulleted"
-                        color={color}
-                        size={30}
-                      />
+                      <Icon name="view-list" color={color} size={30} />
                     ),
                   }}
                 />
@@ -128,7 +124,7 @@ export default function App() {
                   component={gestureHandlerRootHOC(Budgets)}
                   options={{
                     tabBarIcon: ({ color, size }) => (
-                      <Icon name="message" color={color} size={30} />
+                      <Icon name="credit-card" color={color} size={30} />
                     ),
                   }}
                 />
